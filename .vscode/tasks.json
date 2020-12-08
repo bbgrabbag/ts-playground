@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "playground",
+      "group": "none",
+      "problemMatcher": [],
+      "label": "npm: playground",
+      "detail": "jest"
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "group": "test",
+      "problemMatcher": [],
+      "label": "npm: test",
+      "detail": "jest"
+    },
+    {
+      "type": "npm",
+      "script": "dev:build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: dev:build",
+      "detail": "dev:build"
+    },
+    {
+      "type": "npm",
+      "script": "test:build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: test:build",
+      "detail": "test:build"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "build"
+    },
+    {
+      "type": "npm",
+      "script": "clean",
+      "group": "none",
+      "problemMatcher": [],
+      "label": "npm: clean",
+      "detail": "clean"
+    },
+    {
+      "type": "npm",
+      "script": "eslint",
+      "group": "none",
+      "problemMatcher": [],
+      "label": "npm: eslint",
+      "detail": "eslint"
+    }
+  ]
+}

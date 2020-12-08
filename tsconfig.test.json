@@ -1,0 +1,5 @@
+{
+    "exclude": ["src/playground.ts"],
+    "extends": "./tsconfig.dev.json",
+    "compilerOptions": {}
+}
