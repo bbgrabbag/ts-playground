@@ -68,3 +68,37 @@ export function reduce<V, O>(
 
   return output;
 }
+
+export interface OpenBracketRules {
+  open: true;
+  pair: string;
+}
+export interface ClosingBracketRules {
+  open: false;
+}
+export type BracketRules = OpenBracketRules | ClosingBracketRules;
+type BracketParserConfig = Record<string, BracketRules>;
+
+export const parseBracketFactory = (
+  config: BracketParserConfig
+): ((str: string) => boolean | never) => (str: string): boolean => {
+  const queue: (keyof typeof config)[] = [];
+
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    const lastIndexOfQueue = queue.length - 1;
+
+    if (config[c] === undefined)
+      throw `Invalid character in input '${str}' at index ${i}: '${c}'`;
+    if (config[c].open) queue.push(c);
+    else {
+      if (!queue.length) return false;
+      const currentScopedOpenBracket = config[queue[lastIndexOfQueue]];
+      if (currentScopedOpenBracket.open && currentScopedOpenBracket.pair !== c)
+        return false;
+      queue.pop();
+    }
+  }
+
+  return !queue.length;
+};
