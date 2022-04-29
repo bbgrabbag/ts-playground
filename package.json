@@ -1,14 +1,14 @@
 {
   "name": "ts-intro",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "playground": "ts-node --project tsconfig.dev.json src/playground.ts",
-    "test": "jest",
+    "test": "jest --verbose",
     "dev:build": "npm run clean && tsc --project tsconfig.dev.json",
     "test:build": "npm run clean && tsc --project tsconfig.test.json",
-    "build": "npm run clean && npm run eslint && npm t && tsc",
+    "build": "npm run clean && npm run eslint && npm t && tsc --project tsconfig.prod.json",
     "clean": "rm -rf dist",
     "eslint": "eslint",
     "tsc": "tsc",

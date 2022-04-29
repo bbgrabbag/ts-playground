@@ -1,5 +1,7 @@
 # Typescript Playground
 
+*[Release Notes](/changelog.md)*
+
 ### Project Overview
 
 A simple node environment bootstrapped with Typescript and Jest.
@@ -20,7 +22,7 @@ _Each script listed here has a corresponding VSCode task in `.vscode/tasks.json`
 - `npm run playground`
   - Runs `src/playground.ts` file. Does not generate `/dist` folder.
 - `npm run build`
-  - Generates compiled JS in `/dist` based on settings in `tsconfig.json`.
+  - Generates compiled JS in `/dist` based on settings in `tsconfig.prod.json`.
 - `npm run test:build`
   - Generates compiled JS in `/dist` based on settings in `tsconfig.test.json`.
 - `npm run dev:build`

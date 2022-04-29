@@ -1,4 +1,12 @@
-import { reduce, map, filter, sum, keys, addProperty } from "../";
+import {
+  reduce,
+  map,
+  filter,
+  sum,
+  keys,
+  addProperty,
+  parseBracketFactory,
+} from "../";
 
 describe("Sum", () => {
   it("Should equal 4", () => {
@@ -63,5 +71,49 @@ describe("Reduce", () => {
       });
     };
     expect(thrower).toThrow("Cannot reduce an empty array with no initializer");
+  });
+});
+
+describe("Parse Brackets", () => {
+  const parseEmpty = parseBracketFactory({});
+  const parseDefault = parseBracketFactory({
+    "{": { open: true, pair: "}" },
+    "[": { open: true, pair: "]" },
+    "<": { open: true, pair: ">" },
+    "}": { open: false },
+    "]": { open: false },
+    ">": { open: false },
+  });
+
+  it("Should throw error for invalid characters", () => {
+    expect(() => parseDefault("invalid")).toThrow(
+      "Invalid character in input 'invalid' at index 0: 'i'"
+    );
+  });
+
+  it("Should return true for empty strings", () => {
+    expect(parseDefault("")).toBe(true);
+    expect(parseEmpty("")).toBe(true);
+  });
+
+  it("Should fail for any non-empty string if config is empty", () => {
+    Array.from(Array(100)).map(() => {
+      const c = String.fromCharCode(Math.floor(Math.random() * 97) + 29);
+      expect(() => parseEmpty(c)).toThrow(
+        `Invalid character in input '${c}' at index 0: '${c}'`
+      );
+    });
+  });
+
+  it("Should return false if bracket placement is invalid", () => {
+    ["<", ">", "{", "}", "[", "]", "{]", "[{<>]}", "<>{}]["].forEach((s) =>
+      expect(parseDefault(s)).toBe(false)
+    );
+  });
+
+  it("Should return true if bracket placement is valid", () => {
+    ["<>", "{}", "[]", "{{}}", "[][]", "{<>[]}", "{{}}<{[]}<{[]}>>"].forEach((s) =>
+      expect(parseDefault(s)).toBe(true)
+    );
   });
 });
