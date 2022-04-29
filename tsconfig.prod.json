@@ -1,0 +1,5 @@
+{
+    "exclude": ["*/tests/**/*", "src/playground.ts"],
+    "extends": "./tsconfig.json",
+    "compilerOptions": {}
+}
